@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>MetaMaster</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Edgar Treischl" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <meta name="description" content="Git(Hub): A Gentle Introduction for R Users"/>
+    <meta name="generator" content="xaringan and remark.js"/>
+    <meta name="github-repo" content="edgar-treischl/Workshop_GitHubIntro"/>
+    <meta name="twitter:title" content="Git(Hub): A Gentle Introduction for R Users"/>
+    <meta name="twitter:description" content="Git(Hub): A Gentle Introduction for R Users"/>
+    <meta name="twitter:url" content="https://edgar-treischl.github.io/Workshop_GitHubIntro/"/>
+    <meta name="twitter:image" content="https://edgar-treischl.github.io/Workshop_GitHubIntro/images/preview.png"/>
+    <meta name="twitter:image:alt" content="Preview Slide"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta property="og:title" content="Git(Hub): A Gentle Introduction for R Users"/>
+    <meta property="og:description" content="Git(Hub): A Gentle Introduction for R Users"/>
+    <meta property="og:url" content="https://edgar-treischl.github.io/Workshop_GitHubIntro/"/>
+    <meta property="og:image" content="https://edgar-treischl.github.io/Workshop_GitHubIntro/images/preview.png"/>
+    <meta property="og:image:alt" content="Preview Slide"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="article:author" content="Edgar J. Treischl"/>
+    <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+background-size: cover
+class: left, middle
+
+
+
+
+
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #023047;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+&lt;a href="https://github.com/edgar-treischl/Workshop_GitHubIntro" class="github-corner" aria-label="View source on GitHub"&gt;&lt;svg width="80" height="80" viewBox="0 0 250 250" style="fill:#C51717; color:#ffff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"&gt;&lt;path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/&gt;&lt;path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/&gt;&lt;path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;style&gt;.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}&lt;/style&gt;
+
+&lt;br/&gt;
+
+# .black[Automated Reports]
+## .black[A Gentle Introduction]
+
+
+
+&lt;h3&gt;&lt;a href="http://www.edgar-treischl.de" target="_blank" style="color:#C51717;"&gt;Dr. Edgar J. Treischl&lt;/a&gt;&lt;/h3&gt;
+
+&lt;br/&gt;
+&lt;br/&gt;
+.white[Last update: 2025-02-07]
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;h4 style = "color:black; text-align: right;"&gt;Press ⭕ or ➡️&lt;/h4&gt;
+
+
+
+
+
+&lt;div class="remark-footer"&gt;&lt;a href="https://unsplash.com/de/@synkevych" target="_blank" style="color: gray;"&gt;Images: Roman Synkevych&lt;/a&gt;&lt;/div&gt;
+
+
+
+
+
+
+
+
+
+
+---
+## Agenda
+
+
+
+.pull-left[
+
+### 1️⃣ Einführung MetaMaster
+### 2️⃣ Einführung ReportMaster
+### 3️⃣ Next steps
+### 4️⃣ Gist
+
+
+
+]
+
+.pull-right[
+
+
+&lt;a href="https://edgar-treischl.github.io/PracticeR/" target="_blank"&gt;&lt;img src="https://edgar-treischl.github.io/PracticeR/reference/figures/cover.png" alt="Practice R by Edgar Treischl" width="200"/&gt;&lt;/a&gt;
+
+This workshop is based on Practice R.
+]
+
+
+---
+
+
+## Einführung Metamaster
+
+.pull-left[
+
+###  MetaMaster 
+
+- Automatisiert die Generierung der Metadaten: Reduziert Fehleranfälligkeit
+
+- Durch Reprodzierbarkeit können Bugs iterativ ausgemärzt werden
+
+- Zieht sich die Rohdaten aus Lime Survey via API
+- Bereitet die Metadaten für die Generierung von Reports auf
+
+#### Fehleranfälligkeit manuell generierter Daten: B112 vs. B112e
+
+
+
+]
+
+.pull-right[
+&lt;figure&gt;
+    &lt;img src="images/logo.png" style="width: 80%"/&gt;
+&lt;/figure&gt;
+]
+
+
+
+
+
+
+
+
+---
+background-image: url("images/logo.png")
+background-position: 90% 5%
+background-size: 8%
+
+## Einführung Metamaster
+
+#### Beispielauszug Master 01 
+
+
+``` r
+# Get questions for a specific master template
+LS_GetMasterQuestions(id = "197865", 
+                      name = "master_01_bfr_allg_gm_elt_00_2022_v4")
+
+# # A tibble: 29 × 7
+#    surveyID template  code  variable text  question_type filter
+#    &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;         &lt;chr&gt; 
+#  1 197865   master_0… E01   B131W12… An d… F             FALSE 
+#  2 197865   master_0… E01   B132a    Mein… F             FALSE 
+#  3 197865   master_0… E01   B132c    Die … F             FALSE 
+#  4 197865   master_0… E01   B133b    Die … F             FALSE 
+#  5 197865   master_0… E02   B334W12… An d… F             FALSE 
+# # 19 more rows
+# # Use `print(n = ...)` to see more rows
+```
+
+
+
+---
+background-image: url("images/logo.png")
+background-position: 90% 5%
+background-size: 8%
+
+## Kochrezept: Generierung der Meta Daten
+
+
+### 01: Ist `config.yml` (API Zugang, etc.) vorhanden?
+
+```yaml
+default:
+  tmp.server: "semiotikon"
+  api_url: "URL"
+  tmp.user: "user"
+  tmp.credential: "Password"
+```
+
+
+### 02. Laden des Pakets und setzen der Config
+
+
+``` r
+#Set the R_CONFIG_ACTIVE
+library(MetaMaster)
+Sys.setenv(R_CONFIG_ACTIVE = "default")
+```
+
+
+
+
+
+
+---
+background-image: url("images/logo.png")
+background-position: 90% 5%
+background-size: 8%
+
+## Einführung Metamaster
+
+### 03. Build process starten
+
+
+.pull-left[
+
+1. Download der Daten aus LimeSurvey
+2. Export der Rohdaten als Excel Sheet
+3. Aufbereitung der Rohdaten als Metadaten (Tabellen Templates, Reports)
+4. Eventuell: Upload der Metadaten in eine DB/Daten Checks per Mail
+5. Export der Metadaten als Excel Sheet
+
+]
+
+.pull-right[
+
+
+``` r
+build(send_report = TRUE, 
+      update = TRUE)
+
+# Starting the build process...
+# Fetching raw meta data from Lime Survey
+# Raw meta data exported.                          
+# Building metadata for the master data...
+# MetaMaster exported.                  
+# The table 'metadata_raw' has been successfully uploaded to the database.
+# Sending the report...
+# The email message was sent successfully.                       
+# By the power of Grayskull: Building process completed.
+```
+
+
+]
+
+---
+
+## Einführung ReportMaster
+
+.pull-left[
+
+
+#### Der ReportMaster wurde entwickelt, um automatisch dynamische Berichte für Lime Survey zu erstellen. 
+
+- ReportMaster prüft, ob eine Umfrage abgelaufen ist.
+
+- Danach ruft das Package Daten über die Lime Survey API ab und kombiniert sie mit Metadaten, um einen dynamischen Bericht zu erstellen.
+
+
+
+]
+
+.pull-right[
+&lt;figure&gt;
+    &lt;img src="images/logo_rm.png" style="width: 80%"/&gt;
+&lt;/figure&gt;
+]
+
+
+---
+background-image: url("images/logo_rm.png")
+background-position: 90% 5%
+background-size: 8%
+
+
+## Einführung ReportMaster
+
+
+.pull-left[
+
+- ReportMaster läuft als Cron Job via: `run_CronJob()`. Diese Funtion ruft alle Schritte auf, die zur automatischen Erstellung eines PDF-Berichts notwendig sind. 
+
+1. Sie prüft auf geschlossene Umfragen mit gültigen Antworten vorliegen.
+
+2. Die Daten werden aus Lime Survey herunter geladen und mit den Metadaten gemacht. 
+
+3. Generiert Grafiken und fügt sie in den Bericht ein.
+
+]
+
+.pull-right[
+
+
+``` r
+run_CronJob()
+# Lucky fellow, there are new expired surveys!
+# Joining with `by = join_by(sid)`
+# Joining with `by = join_by(sid)`
+# Get parameters for: Adalbert-Raps-Schule Staatliche BOS Kulmbach
+# Downloaded data from LimeSurvey.
+# All parameters set.   
+# Create data and plots [3.3s]
+# Get report infos [881ms]
+# Create plots [2.1s]
+# Create tables [4.4s]
+# Exported PDF file for school '0850' and group 'elt'
+```
+
+]
+
+
+
+---
+background-image: url("images/logo_rm.png")
+background-position: 90% 5%
+background-size: 8%
+
+## Einführung ReportMaster
+
+### Report können natürlich auch manuell erstellt werden
+
+
+``` r
+# Folgende Parameter müssen gesetzt werden
+library(ReportMaster)
+Sys.setenv(R_CONFIG_ACTIVE = "production")
+
+run_Parallel(
+  snr = "2370",
+  audience = "leh",
+  stype = "gm",
+  ubb = "TRUE",
+  ganztag = "FALSE",
+  results = "Lehrkräfte"
+)
+```
+
+
+
+
+
+
+
+---
+## Von manuellen zu automatisierten Metadaten
+
+#### Meta Daten beinhaltet nur Informationen die es in Lime Survey überhaupt gibt 
+
+- Reifenfolge der Auswertung wird über den **Plot** (diese beinhalten ein oder mehere Surveyitems) definiert
+
+- Ergänzende Auswertungen (**Extraplots**): Auswertung erfolgt über Plots wobei die Survey Items nicht mehrfach in Daten gelistet sind
+
+- Vereinheitlichung der Survey Strukturdaten (**Master to Templates**)
+
+- Gewährleistung der Konsistenz von **Variablenbezeichnung** (Gesamtdatensatzes)
+
+#### =&gt; In diesen Fällen muss noch nachgeschärft werden
+
+
+
+
+---
+
+## Plot (Variablenbezeichnung)
+
+### Für die Automatisierung muss die Plotbezeichung bei allen Survey Items nach festgelegten Muster hinzugefügt werden: Von *B112* zu *B112XB11*
+
+### Einheitliche Variablenbezeichnung bestehend aus: 
+ - Code (fortlaufen Seitennummer)
+ - Variablenbezeichnung
+ - Plot
+
+
+``` r
+# Split im Datensatz:
+item &lt;- "E01XB112XB11"
+stringr::str_split(item, "X")
+```
+
+```
+## [[1]]
+## [1] "E01"  "B112" "B11"
+```
+
+---
+
+## Plot (Variablenbezeichnung)
+
+.pull-left[
+
+### Bislang wurden diese Extraplot ohne Markerierung den manuellen Daten hintzefügt
+
+### Aufbereitung der Extraplots nach folgenden System
+
+
+]
+
+.pull-right[
+
+
+``` r
+extraplots_raw
+# extraplots_raw
+# # A tibble: 866 × 4
+#    report        vars     plot  extraplot
+#    &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt; &lt;lgl&gt;    
+#  1 unique_report A131W121 A13   FALSE    
+#  2 unique_report A131W121 W12   TRUE     
+#  3 unique_report A131W121 A13   FALSE    
+#  4 unique_report A131W121 W12   TRUE     
+#  5 unique_report A131W121 A13   FALSE    
+# # ℹ 856 more rows
+# # ℹ Use `print(n = ...)` to see more rows
+```
+
+
+]
+
+#### =&gt; Extraplots werden aus den Rohdaten extrahiert (A131W121); den Reports Tabelle hinzugefügt und der Plotbezeichnung ausgetauscht (von A13 zu W12)
+
+
+---
+
+## Master to Templates
+
+#### Bislang keine Automatisierung der MtT Daten: Manuelle Zuordnungen
+
+
+``` r
+# # A tibble: 104 × 4
+#    surveyls_title                       template                rpt   rpt_overall
+#    &lt;chr&gt;                                &lt;chr&gt;                   &lt;chr&gt; &lt;chr&gt;      
+#  1 master_01_bfr_allg_gm_elt_00_2022_v4 tmpl_bfr_allg_gm_elt_0… rpt_… gm_p1      
+#  2 master_01_bfr_allg_gm_elt_00_2022_v4 tmpl_bfr_allg_gm_elt_0… rpt_… gm_p3      
+#  3 master_03_bfr_allg_gm_leh_00_2022_v4 tmpl_bfr_allg_gm_leh_0… rpt_… gm_p1      
+#  4 master_03_bfr_allg_gm_leh_00_2022_v4 tmpl_bfr_allg_gm_leh_0… rpt_… gm_p3      
+#  5 master_03_bfr_allg_gm_leh_00_2022_v4 tmpl_bfr_allg_gm_leh_0… rpt_… gm_p2      
+# # ℹ 94 more rows
+# # ℹ Use `print(n = ...)` to see more rows
+```
+
+#### Plus: Manuelle Logik beim Aufbau der Strukturdaten: 1 Master sind X Templates und Y Reports zugeordnet
+
+
+---
+
+## Master to Templates
+
+#### Prinzipiell kein Matching notwendig, wenn den Master_01 die Templates_01 und Reports01 zugeordnet sind
+
+
+``` r
+# # A tibble: 104 × 4
+#    surveyls_title                       template                rpt   rpt_overall
+#    &lt;chr&gt;                                &lt;chr&gt;                   &lt;chr&gt; &lt;chr&gt;      
+#  1 master_01_bfr_allg_gm_elt_00_2022_v4 tmpl_bfr_allg_gm_elt_0… rpt_… gm_p1      
+#  2 master_01_bfr_allg_gm_elt_00_2022_v4 tmpl_bfr_allg_gm_elt_0… rpt_… gm_p3      
+#  3 master_03_bfr_allg_gm_leh_00_2022_v4 tmpl_bfr_allg_gm_leh_0… rpt_… gm_p1      
+#  4 master_03_bfr_allg_gm_leh_00_2022_v4 tmpl_bfr_allg_gm_leh_0… rpt_… gm_p3      
+#  5 master_03_bfr_allg_gm_leh_00_2022_v4 tmpl_bfr_allg_gm_leh_0… rpt_… gm_p2      
+# # ℹ 94 more rows
+# # ℹ Use `print(n = ...)` to see more rows
+```
+
+---
+
+## Konsistente Variablenbezeichnung
+
+### Sonst: Äpfel-und-Birnen-Problem beim Aufbau des Gesamtdatensatze
+
+
+
+
+
+
+``` r
+# # A tibble: 161 × 2
+#    vars      text                                                                          
+#    &lt;chr&gt;     &lt;chr&gt;                                                                         
+#  1 A112aXA1a "Die LK achtet konsequent auf die Einhaltung von Regeln."                     
+#  2 A112aXA1a "Die LK achtet auf die Einhaltung von Regeln."                                
+#  3 A112bXA1a "Die SuS beachten die vereinbarten Regeln."                                   
+#  4 A113XA1a  "Die LK geht mit Blick auf die Gruppe und den Einzelnen angemessen mit Störun…
+#  5 A113XA1a  "Die LK geht angemessen mit Störungen um."                                    
+#  6 A114XA1a  "Die SuS reagieren auf Signale oder Hinweise der LK."                         
+#  7 A114XA1a  "Die SuS beachten die vereinbarten Regeln."                                   
+#  8 A11XA1    "Der Unterricht wird durch Störungen nicht beeinträchtigt."                   
+#  9 A11XA1    "&lt;p style=\"font-size:26px;\"&gt;&lt;b&gt;Der Unterricht wird durch Störungen nicht be…
+# 10 A11XA1    "&lt;p style=\"font-size:26px;\"&gt;&lt;b&gt;Der Unterricht wird durch Störungen nicht be…
+# # ℹ 151 more rows
+# # ℹ Use `print(n = ...)` to see more rows
+```
+
+
+---
+
+## Kleinere Baustellen
+
+### Bereinigung der Mastertemplates (z.B. HTML)
+
+
+---
+## Mehrere Probleme
+
+### Generell: Fehleranfälligkeit manuell erstellter Daten
+
+### Zuordnung zu Plot (und weitere Informationen) nicht in Lime Survey enthalten
+
+### Hinzufügen zusätzlicher Auswertungen via Extraplots:
+ - Variable B112 ist Plot B12 zugeordnet
+ - Variable B112 ist Plot W13 zugeordnet
+ =&gt; Extraplots können per Definition nicht automatisiert generiert werden
+
+---
+background-image: url("images/ibm.gif")
+background-size: cover
+class: bottom, center
+
+# .white[1️⃣ Git/GitHub ... What?] 
+
+
+
+
+---
+## Von manuellen zu automatisierten Metadaten
+
+
+
+```
+## # A tibble: 3 × 2
+##   album_id album_name                           
+##      &lt;dbl&gt; &lt;chr&gt;                                
+## 1        1 Abbey Road                           
+## 2        2 Revolver                             
+## 3        3 Sgt. Pepper's Lonely Hearts Club Band
+```
+
+```
+## # A tibble: 3 × 2
+##   album_id song_name                    
+##   &lt;chr&gt;    &lt;chr&gt;                        
+## 1 1        Come Together                
+## 2 2        Eleanor Rigby                
+## 3 3        Lucy in the Sky with Diamonds
+```
+
+```
+## Error in `left_join()`:
+## ! Can't join `x$album_id` with `y$album_id` due to incompatible types.
+## ℹ `x$album_id` is a &lt;double&gt;.
+## ℹ `y$album_id` is a &lt;character&gt;.
+```
+
+
+---
+
+## (01) Git/GitHub ... What?
+
+.left-column[
+&lt;br/&gt;
+&lt;a href="https://git-scm.com/" target="_blank"&gt;&lt;img src="https://git-scm.com/images/logo@2x.png" style="width: 70%"/&gt;&lt;/a&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;a href="https://github.com" target="_blank"&gt;&lt;img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="Github" width="60%"/&gt;&lt;/a&gt;
+
+]
+
+.right-column[
+- Git is a version control system to track changes over time
+- Continuous integration (CI) and continuous deployment (CD)
+- GitHub (GitLab) is an host (website) for Git-based projects
+- Each project is stored in a repository (folder with all files)
+- A repository can be *public* or *private*
+
+
+### Why Hosts like GitHub?
+
+- Easier to track code changes
+- Share work
+- Automated workflows
+- Websites for projects
+- Work together
+- ...
+
+]
+
+
+
+
+
+
+
+---
+## (01) Git/GitHub ... What?
+
+
+.panelset[
+.panel[.panel-name[Track Code]
+
+&lt;img src="images/Fig_0901.png" style="width: 90%"/&gt;
+]
+
+.panel[.panel-name[Share Code]
+
+.pull-left[
+
+``` r
+# Source the script
+link &lt;- paste0("https://raw.githubusercontent.com/",
+               "edgar-treischl/edgar/refs/heads/",
+               "master/inst/graphs/long_wide.R")
+
+devtools::source_url(link)
+showplot()
+```
+
+
+``` r
+# Run a shiny app from GitHub
+shiny::runGitHub("power-app", 
+                 "edgar-treischl", 
+                 ref="main")
+```
+
+]
+.pull-right[
+&lt;img src="images/plot-last-1.png" style="width: 90%"/&gt;
+]
+
+
+]
+
+.panel[.panel-name[Automate workflows]
+
+- Deploy a website, book, presentation
+- Run tests
+- Create a package
+
+.pull-left[
+
+```yaml
+on:
+  push:
+    branches: [main, master]
+    
+jobs:
+  pkgdown:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: my_script.R
+```
+
+
+]
+
+.pull-right[
+&lt;img src="images/workflow.png" style="width: 100%"/&gt;
+]
+]
+
+]
+
+
+
+
+---
+background-image: url("images/g3.gif")
+background-size: cover
+class: bottom, center
+
+# .white[2️⃣ Getting Started] 
+
+
+---
+## (02) Getting Started
+
+### Push and pull 💪 on a regular basis:
+
+1. Install Git:
+  - Install on your local machine
+  - Introduce *yourself*
+  - Learn some *Git*
+
+2. Connect to GitHub
+  - Create a *Personal Access Token* (PAT)
+  - Create a *Repository*
+
+3. Connect GitHub and R Studio
+  - *Clone* the newly created repository
+  - *Setup R Studio* and connect to GitHub
+  - Get in touch with the R Studio *Git pane*
+
+
+
+
+
+---
+## (02) Install Git on your local machine
+
+.left-column[
+&lt;br/&gt;
+&lt;a href="https://git-scm.com/" target="_blank"&gt;&lt;img src="https://git-scm.com/images/logo@2x.png" style="width: 70%"/&gt;&lt;/a&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;a href="https://github.com" target="_blank"&gt;&lt;img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="Github" width="60%"/&gt;&lt;/a&gt;
+
+]
+
+.right-column[
+
+- Windows: https://git-scm.com/download/win
+- OS X: https://git-scm.com/download/mac
+- Debian/Ubuntu: sudo apt-get install git-core
+
+
+
+``` bash
+# I am git code to check if git is installed
+
+# Go to the console and type:
+git --version
+```
+
+```
+## git version 2.39.5 (Apple Git-154)
+```
+
+
+- Next, create a free GitHub account
+
+]
+
+
+
+---
+background-image: url(https://usethis.r-lib.org/logo.png)
+background-position: 90% 5%
+background-size: 10%
+
+## (02) Install Git: Introduce yourself
+
+
+### Via the shell
+
+```bash
+#In the console
+git config --global user.name "User Name"
+git config --global user.email "email@adress.com"
+
+```
+
+### Or with the 🚀 usethis package
+
+
+``` r
+library(usethis)
+use_git_config(user.name = "Jane Doe",
+               user.email = "jane@example.org")
+```
+
+
+---
+## (02) Install Git: Introduce yourself
+
+### Check global configuration settings
+
+
+``` bash
+git config --global --list
+```
+
+```
+## filter.lfs.clean=git-lfs clean -- %f
+## filter.lfs.smudge=git-lfs smudge -- %f
+## filter.lfs.process=git-lfs filter-process
+## filter.lfs.required=true
+## user.name=Edgar Treischl
+## user.email=77931249+edgar-treischl@users.noreply.github.com
+## core.excludesfile=~/.gitignore
+```
+
+
+---
+background-image: url("images/cat.gif")
+background-size: cover
+class: bottom, center
+
+# .white[Git can be scary, but ...] 
+
+
+---
+## (02) Install Git: New Vocabulary 🤺
+
+
+.pull-left[
+
+Wait, Git is scary because it's full of technical jargon&lt;sup&gt;1&lt;/sup&gt;:
+
+- **Repository**: A folder with all project files
+- **Push**: Send code (files) to Git 
+- **Pull**: Get code (files) from a Git repository
+- **Commit**: A snapshot of a repository at a certain point in time
+- **Branch**: A parallel version within the repository to test new features
+
+...
+
+.footnote[
+[1] As often, R Studio helps us to work with Git.
+]
+
+]
+
+.pull-right[
+&lt;figure&gt;
+    &lt;img src="images/allison_horst_web.png" style="width: 100%"/&gt;
+    &lt;figcaption style = "color: darkgray;"&gt;'Artwork by @allison_horst'&lt;/figcaption&gt;
+&lt;/figure&gt;
+]
+
+
+
+---
+## (02) Install Git: New Vocabulary 🤺 
+
+
+
+.pull-left[
+
+- **Merge**: Combine two branches
+- **Merge conflicts**: When two branches have changed the same part of a file, Git will not be able to automatically determine what is correct
+- **Forks**: Forks are interconnected repositories, for example, to examine a repository from someone else
+- **Pull requests**: A way to suggest changes to a repository
+
+
+
+]
+
+
+
+.pull-right[
+&lt;figure&gt;
+    &lt;img src="images/allison_horst_web.png" style="width: 100%"/&gt;
+    &lt;figcaption style = "color: darkgray;"&gt;'Artwork by @allison_horst'&lt;/figcaption&gt;
+&lt;/figure&gt;
+]
+
+
+
+
+---
+## (02) Connect to GitHub: Create a PAT
+
+### Create a PAT in R Studio:
+
+
+``` r
+# The create_github_token() function will open a browser window to create a token
+usethis::create_github_token()
+
+#The set_github_pat() function will store the token in the .Renviron file
+credentials::set_github_pat("token")
+```
+
+
+### Or manually via: 
+
+On the GitHub website, go to: 
+  - Settings &gt; Developer settings &gt; Personal access tokens: 
+  - https://github.com/settings/tokens
+
+
+
+---
+## (02) Connect to GitHub
+
+
+### Check if R Studio is connected to GitHub:
+
+
+``` r
+# Actually, whoami will show you who you are on GitHub ...
+gh::gh_whoami()
+```
+
+```
+## {
+##   "name": "Edgar Treischl",
+##   "login": "edgar-treischl",
+##   "html_url": "https://github.com/edgar-treischl",
+##   "scopes": "gist, repo, user, workflow",
+##   "token": "ghp_...Cmqg"
+## }
+```
+
+#### 🎆 ... you're connected!
+
+---
+## (02) Connect to GitHub: Create a repository
+
+&lt;img src="images/Fig_0903.png" style="width: 60%"/&gt;
+
+
+---
+## (02) Connect to GitHub: Create a repository
+
+&lt;img src="images/Fig_0904.png" style="width: 80%"/&gt;
+
+---
+## (02) Connect GitHub and R Studio
+
+.pull-left[
+
+#### 1. Create a new project in R Studio and click next.
+
+#### 2. Pick Version Control and cick next.
+
+#### 3. Pick Git and click next.
+
+#### 4. Paste the repository URL: ▶️
+
+]
+
+
+
+.pull-right[
+&lt;img src="images/Fig_0905.png" style="width: 100%"/&gt;
+]
+
+
+
+
+---
+## (02) Connect GitHub and R Studio: Git Pane
+
+### Once R Studio is connected, search for the Git pane:
+
+&lt;img src="images/Fig_0906.png" style="width: 80%"/&gt;
+
+---
+## (02) Connect GitHub and R Studio: Git Pane
+
+### You gonna stage, commit, push, and let it all out  🕺
+
+&lt;img src="images/Fig_0907.png" style="width: 75%"/&gt;
+
+
+
+---
+background-image: url("images/practice.gif")
+background-size: cover
+class: bottom, center
+
+# .white[Practice Makes Perfect] 
+
+
+---
+## Practice Makes Perfect
+
+### ➕ Create a new repository on GitHub  
+### 💻 Clone the repository on your local machine
+### 📂 Add a new repository file
+### 🆑 Commit the changes
+### 📫 Push the changes to the remote repository
+
+
+
+---
+background-image: url("images/merge.gif")
+background-size: cover
+class: bottom, center
+
+# .white[3️⃣ Basics of Git] 
+
+
+---
+## (03) Git basics
+
+```bash
+# Initialize a new repository
+git init &lt;your repository name&gt;
+
+# Clone a repository
+git clone &lt;git-repo-url&gt;
+
+# Create a new branch
+git branch &lt;branch-name&gt;
+
+# List all branches
+git branch --list
+
+# Delete a branch
+git branch -d &lt;branch-name&gt;
+
+# Switch to a branch
+git checkout &lt;branch-name&gt;
+```
+
+
+---
+## (03) Git for the daily workflow
+
+.pull-left[
+
+```bash
+# Add a file to the staging area
+git add &lt;file-name-1&gt;
+
+# Add all files to the staging area
+git add -A
+
+# Commit changes
+git commit -am &lt;commit-message&gt;
+
+# Push changes to the remote rep
+git push &lt;remote&gt; &lt;branch-name&gt;
+
+# Pull changes from the remote rep
+git pull
+
+# Merge two branches
+git merge &lt;branch-name&gt;
+```
+
+
+]
+
+.pull-right[
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;figure&gt;
+    &lt;img src="images/allison_horst_gf.png" style="width: 100%"/&gt;
+    &lt;figcaption style = "color: darkgray;"&gt;'Artwork by @allison_horst'&lt;/figcaption&gt;
+&lt;/figure&gt;
+]
+
+
+---
+## (03) Even more Git? 💥
+
+.pull-left[
+
+#### Do I need all the code if I am happy with the Git Pane?
+
+- The Pane simplifies common Git operations, but Git Code gives you more control, flexibility, and the ability to handle complex operations
+
+- **Common example**: Merge conflicts can occur when two branches have changed the same part of a file and Git will not be able to automatically determine what is correct
+
+- Git commands give you a more detailed understanding of where the conflicts are happening. This is particularly useful when the conflict isn't straightforward to resolve.
+
+- Of course, we don't have to remember in detail 😉
+
+]
+
+.pull-right[
+
+#### Merge Conflict:
+
+```bash
+# &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+# print("This is my feature branch.")
+# =======
+# print("This is my master branch.")
+# &gt;&gt;&gt;&gt;&gt;&gt;&gt; master
+
+```
+#### Typical workflow to solve the merge conflict:
+
+- Manually resolve the conflict in the file(s) and run:
+
+```bash
+git add script.R
+git commit -m "Resolved merge conflict"
+```
+
+
+
+]
+
+
+
+
+---
+## (03) Git for troubleshooting 💀
+
+.pull-left[
+
+```bash
+# Show who changed what and when
+git blame file.txt
+
+# Shows the working tree status
+git status
+
+# Shows changes between commits
+git diff
+
+#💀💀💀 DANGER
+# Revert some existing commits
+git revert SHA
+
+# Reset the repository to a previous commit 
+# Take care: This will discard any local changes
+git reset 
+
+#Ultima ratio ;-)
+# A "hard reset": forcefully discard any local changes
+```
+
+]
+.pull-right[
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;figure&gt;
+    &lt;a href="https://git-scm.com/book/de/v2" target="_blank"&gt;&lt;img src="https://git-scm.com/images/progit2.png" alt="Pro Git by Chacon and Straub" width="50%"/&gt;&lt;/a&gt;
+    &lt;figcaption style = "color: darkgray;"&gt;'Pro Git by Chacon and Straub'&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+]
+
+
+---
+## (03) Commit history in R Studio
+
+&lt;img src="images/Fig_0908.png" style="width: 80%"/&gt;
+
+---
+background-image: url("images/bite.gif")
+background-size: cover
+class: bottom, center
+
+# .black[4️⃣ Gist]
+
+
+
+
+
+---
+## (04) Gist
+
+.panelset[
+
+
+.panel[.panel-name[Package]
+
+.pull-left[
+
+GitHub Gist is a service provided by GitHub that allows you to share and store snippets of code, text, or any other kind of file.
+
+- Quick sharing of code (with your future self)
+- Code embedding
+- No need for a full repository
+
+
+
+]
+
+
+.pull-right[
+
+&lt;div class="info-box"&gt;
+  &lt;i&gt;🦜️️&lt;/i&gt; The gist package provides a set of functions to work with GitHub Gist. It allows you to copy, create, and delete gists via the GitHub API. Moreover, it comes with an R Studio addin to get access and manage your Gists.
+&lt;/div&gt;
+
+&lt;a href="https://edgar-treischl.github.io/gist/" target="_blank"&gt;&lt;img src="https://edgar-treischl.github.io/gist/logo.png" alt="The ggplot2 package" align="center" style="width: 25%"/&gt;&lt;/a&gt;
+
+]
+
+
+
+]
+
+.panel[.panel-name[R Studio Addin]
+
+.pull-left[
+
+
+#### R Studio Addin: 
+
+
+``` r
+#You can install the development version via:
+devtools::install_github("edgar-treischl/gist")
+```
+
+
+``` r
+#The gistAddin()
+gist::gistAddin()
+```
+
+
+
+]
+
+.pull-right[
+&lt;img src="https://edgar-treischl.github.io/gist/reference/figures/gistapp.png" style="width: 75%"/&gt;
+]
+
+]
+
+.panel[.panel-name[Via the console]
+
+.pull-left[
+
+
+``` r
+library(gist)
+#Create a gist
+gist_create(name = "A_Test.R", 
+            code = '#Test
+print("Hello world")', 
+            description = "Test Gist")
+```
+
+
+``` r
+#gistfiles lists all files and returns names and ids
+gist_get(filename = "A_Test.R")
+
+#&gt; ✔ Copied A_Test.R from your GitHub account.
+```
+
+
+
+]
+
+.pull-right[
+&lt;a href="https://gist.github.com/edgar-treischl" target="_blank"&gt;&lt;img src="images/gist_screen.png" alt="The ggplot2 package" align="right" style="width: 100%"/&gt;&lt;/a&gt;
+
+]
+]
+
+]
+
+
+
+
+
+
+
+
+
+---
+class: right, middle
+
+
+## Thank you for your attention!
+
+
+&lt;img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/77931249?s=400&amp;u=eaf1d0871b643dd32cc0ff9f777edef28e6569a8&amp;v=4" width="150px"/&gt;
+
+
+
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M505.12019,19.09375c-1.18945-5.53125-6.65819-11-12.207-12.1875C460.716,0,435.507,0,410.40747,0,307.17523,0,245.26909,55.20312,199.05238,128H94.83772c-16.34763.01562-35.55658,11.875-42.88664,26.48438L2.51562,253.29688A28.4,28.4,0,0,0,0,264a24.00867,24.00867,0,0,0,24.00582,24H127.81618l-22.47457,22.46875c-11.36521,11.36133-12.99607,32.25781,0,45.25L156.24582,406.625c11.15623,11.1875,32.15619,13.15625,45.27726,0l22.47457-22.46875V488a24.00867,24.00867,0,0,0,24.00581,24,28.55934,28.55934,0,0,0,10.707-2.51562l98.72834-49.39063c14.62888-7.29687,26.50776-26.5,26.50776-42.85937V312.79688c72.59753-46.3125,128.03493-108.40626,128.03493-211.09376C512.07526,76.5,512.07526,51.29688,505.12019,19.09375ZM384.04033,168A40,40,0,1,1,424.05,128,40.02322,40.02322,0,0,1,384.04033,168Z"&gt;&lt;/path&gt;&lt;/svg&gt; www.edgar-treischl.de](https://www.edgar-treischl.de)
+
+[&lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt; edgar-treischl](https://github.com/edgar-treischl)
+
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"&gt;&lt;/path&gt;&lt;/svg&gt; edgar.treischl@isb.bayern.de](mailto:edgar.treischl@isb.bayern.de)
+
+
+---
+class: right, middle
+
+
+
+## Licence
+
+This presentation is licensed under a CC-BY-NC 4.0 license.
+You may copy, distribute, and use the slides in your own work, as long as you give attribution to the original author on each slide that you use. Commercial use of the contents of these slides is not allowed.
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;img src="images/by-nceu.png" alt="Image left" width="150px"/&gt;
+
+
+
+
+---
+
+## References
+
+
+&lt;p&gt;&lt;cite&gt;Chacon, S. and B. Straub
+(2014).
+&lt;em&gt;Pro Git&lt;/em&gt;.
+Englisch.
+2nd ed.
+New York, NY: Apress.
+ISBN: 978-1-4842-0077-3.&lt;/cite&gt;&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;Treischl, E. J.
+(2023).
+&lt;em&gt;Practice R: An interactive textbook&lt;/em&gt;.
+Publication Title: Practice R.
+De Gruyter Oldenbourg.&lt;/cite&gt;&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;Wickham, H., J. Bryan, and M. Barrett
+(2022).
+&lt;em&gt;usethis: Automate Package and Project Setup&lt;/em&gt;.
+R package version 2.1.6.
+URL: &lt;a href="https://CRAN.R-project.org/package=usethis"&gt;https://CRAN.R-project.org/package=usethis&lt;/a&gt;.&lt;/cite&gt;&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;Wickham, H., J. Hester, W. Chang, et al.
+(2022).
+&lt;em&gt;devtools: Tools to Make Developing R Packages Easier&lt;/em&gt;.
+R package version 2.4.5.
+URL: &lt;a href="https://CRAN.R-project.org/package=devtools"&gt;https://CRAN.R-project.org/package=devtools&lt;/a&gt;.&lt;/cite&gt;&lt;/p&gt;
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
