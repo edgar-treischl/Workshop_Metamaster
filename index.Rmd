@@ -170,6 +170,21 @@ cat(readLines("github-corner.html"), sep = "\n")
 ### `r emoji::emoji("four")` Gist
 
 
+```{r}
+# # A tibble: 8 × 6
+#   report        vars  plot  label_short                                            
+#   <chr>         <chr> <chr> <chr>                                                  
+# 1 gm_p2         W343D W34d  GS_Im Ganztag kann ich Dinge tun, die mir Spaß machen. 
+# 2 gs_p2         W343D W34c  Im Ganztag kann ich Dinge tun, die mir Spaß machen.     
+# 3 rpt_sus_gm_p2 W343D W34d  GS_Im Ganztag kann ich Dinge tun, die mir Spaß machen. 
+# 4 rpt_sus_gs_p2 W343D W34b  Im Ganztag kann ich Dinge tun, die mir Spaß machen.    
+# 5 rpt_sus_fz_p2 W343D W34b  Im Ganztag kann ich Dinge tun, die mir Spaß machen.     
+# 6 rpt_all_fz_p2 W343D W34c  Im Ganztag kann ich Dinge tun, die mir Spaß machen.    
+# 7 gm_p4         W343D W34d  GS_Im Ganztag kann ich Dinge tun, die mir Spaß machen. 
+# 8 gs_p4         W343D W34c  Im Ganztag kann ich Dinge tun, die mir Spaß machen.     
+```
+
+
 
 ]
 
