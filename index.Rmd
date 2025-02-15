@@ -128,8 +128,8 @@ cat(readLines("github-corner.html"), sep = "\n")
 
 <br/>
 
-# .black[Automated Reports]
-## .black[A Gentle Introduction]
+# .black[OES Reporting]
+## .black[MetaMaster und ReportMaster]
 
 
 
@@ -164,25 +164,13 @@ cat(readLines("github-corner.html"), sep = "\n")
 
 .pull-left[
 
-### `r emoji::emoji("one")` Einführung MetaMaster
-### `r emoji::emoji("two")` Einführung ReportMaster
-### `r emoji::emoji("three")` Next steps
-### `r emoji::emoji("four")` Gist
+### Einführung MetaMaster
+### Einführung ReportMaster
+### Implementierung der Automatisierung
+### Offene Baustellen
 
 
-```{r}
-# # A tibble: 8 × 6
-#   report        vars  plot  label_short                                            
-#   <chr>         <chr> <chr> <chr>                                                  
-# 1 gm_p2         W343D W34d  GS_Im Ganztag kann ich Dinge tun, die mir Spaß machen. 
-# 2 gs_p2         W343D W34c  Im Ganztag kann ich Dinge tun, die mir Spaß machen.     
-# 3 rpt_sus_gm_p2 W343D W34d  GS_Im Ganztag kann ich Dinge tun, die mir Spaß machen. 
-# 4 rpt_sus_gs_p2 W343D W34b  Im Ganztag kann ich Dinge tun, die mir Spaß machen.    
-# 5 rpt_sus_fz_p2 W343D W34b  Im Ganztag kann ich Dinge tun, die mir Spaß machen.     
-# 6 rpt_all_fz_p2 W343D W34c  Im Ganztag kann ich Dinge tun, die mir Spaß machen.    
-# 7 gm_p4         W343D W34d  GS_Im Ganztag kann ich Dinge tun, die mir Spaß machen. 
-# 8 gs_p4         W343D W34c  Im Ganztag kann ich Dinge tun, die mir Spaß machen.     
-```
+
 
 
 
@@ -198,22 +186,32 @@ This workshop is based on Practice R.
 
 
 ---
+class: middle, center, inverse
 
 
-## Einführung Metamaster
+## Error in get_plotdata(): Can't join meta data with limesurvey data.
+
+
+
+---
+
+
+## 01 Metamaster: Einführung
 
 .pull-left[
 
-###  MetaMaster 
 
-- Automatisiert die Generierung der Metadaten: Reduziert Fehleranfälligkeit
 
-- Durch Reprodzierbarkeit können Bugs iterativ ausgemärzt werden
+#### Fehleranfälligkeit manuell generierter Daten: B112 vs. B112e
+
+#### Automatisiert die Generierung der Metadaten: Reduziert Fehleranfälligkeit
+
+#### Durch Reproduzierbarkeit können Bugs iterativ ausgemärzt werden
 
 - Zieht sich die Rohdaten aus Lime Survey via API
 - Bereitet die Metadaten für die Generierung von Reports auf
 
-#### Fehleranfälligkeit manuell generierter Daten: B112 vs. B112e
+
 
 
 
@@ -221,7 +219,7 @@ This workshop is based on Practice R.
 
 .pull-right[
 <figure>
-    <img src="images/logo.png" style="width: 80%"/>
+    <img src="images/logo.png" style="width: 70%"/>
 </figure>
 ]
 
@@ -237,9 +235,7 @@ background-image: url("images/logo.png")
 background-position: 90% 5%
 background-size: 8%
 
-## Einführung Metamaster
-
-#### Beispielauszug Master 01 
+## 01: Beispielauszug Master 01 
 
 ```{r, eval=FALSE}
 # Get questions for a specific master template
@@ -265,10 +261,12 @@ background-image: url("images/logo.png")
 background-position: 90% 5%
 background-size: 8%
 
-## Kochrezept: Generierung der Meta Daten
+## 01: Generierung der Meta Daten
 
 
-### 01: Ist `config.yml` (API Zugang, etc.) vorhanden?
+#### 1: Ist das Config File vorhanden?
+
+#### Die `config.yml` Datei im Root-Verzeichnis beinhaltet alle Informationen um Daten über die Lime Survey API zu ziehen:
 
 ```yaml
 default:
@@ -279,7 +277,7 @@ default:
 ```
 
 
-### 02. Laden des Pakets und setzen der Config
+#### 2. Laden des Pakets und der Config Datei
 
 ```{r}
 #Set the R_CONFIG_ACTIVE
@@ -297,17 +295,17 @@ background-image: url("images/logo.png")
 background-position: 90% 5%
 background-size: 8%
 
-## Einführung Metamaster
+## 01: Generierung der Meta Daten
 
-### 03. Build process starten
+### 3. Datengenerierungsprozess via build Funktion:
 
 
 .pull-left[
 
-1. Download der Daten aus LimeSurvey
-2. Export der Rohdaten als Excel Sheet
+1. Download der Daten aus LimeSurvey.
+2. Export der Rohdaten als Excel Sheet.
 3. Aufbereitung der Rohdaten als Metadaten (Tabellen Templates, Reports)
-4. Eventuell: Upload der Metadaten in eine DB/Daten Checks per Mail
+4. Eventuell: Upload der Metadaten in eine DB/Daten Checks per Mail.
 5. Export der Metadaten als Excel Sheet
 
 ]
@@ -315,37 +313,41 @@ background-size: 8%
 .pull-right[
 
 ```{r, eval=FALSE}
-build(send_report = TRUE, 
-      update = TRUE)
+library(MetaMaster)
+Sys.setenv(R_CONFIG_ACTIVE = "test")
+build(send_report = TRUE, update = TRUE)
 
-# Starting the build process...
-# Fetching raw meta data from Lime Survey
-# Raw meta data exported.                          
-# Building metadata for the master data...
-# MetaMaster exported.                  
-# The table 'metadata_raw' has been successfully uploaded to the database.
-# Sending the report...
-# The email message was sent successfully.                       
-# By the power of Grayskull: Building process completed.
+# ℹ Starting the build process...
+# ℹ Fetching raw meta data from Lime Survey
+# ✔ Raw meta data exported.                          
+# ℹ Building metadata for the master data...
+# ✔ MetaMaster exported.                  
+# ℹ Sending the report...
+#   The email message was sent successfully.                       
+# ✔ By the power of Grayskull: 
+# ✔ Building process completed.
+
 ```
 
 
 ]
 
+#### Generierte Daten müssen in ReportMaster eingebunden werden
+
 ---
 
-## Einführung ReportMaster
+## 02: ReportMaster
+
 
 .pull-left[
 
+#### Der ReportMaster generiert automatisch dynamische Reports für Lime Survey 
 
-#### Der ReportMaster wurde entwickelt, um automatisch dynamische Berichte für Lime Survey zu erstellen. 
+- ReportMaster ist als CRON-Job implementiert und prüft, ob eine Umfrage abgelaufen ist
 
-- ReportMaster prüft, ob eine Umfrage abgelaufen ist.
+- Sind Umfragen abgeschlossen und Daten vorhanden, werden die Daten aus Lime Survey heruntergeladen 
 
-- Danach ruft das Package Daten über die Lime Survey API ab und kombiniert sie mit Metadaten, um einen dynamischen Bericht zu erstellen.
-
-
+- ReportMaster kombiniert die Daten mit Metadaten und erstellt einen Report je Umfrage (sowie aller Umfragen pro Schule)
 
 ]
 
@@ -362,14 +364,14 @@ background-position: 90% 5%
 background-size: 8%
 
 
-## Einführung ReportMaster
+## 02 Cron Job
 
 
 .pull-left[
 
-- ReportMaster läuft als Cron Job via: `run_CronJob()`. Diese Funtion ruft alle Schritte auf, die zur automatischen Erstellung eines PDF-Berichts notwendig sind. 
+#### Die Funktion `run_CronJob()` ruft alle Schritte auf, die zur automatischen Erstellung eines PDF-Berichts notwendig sind
 
-1. Sie prüft auf geschlossene Umfragen mit gültigen Antworten vorliegen.
+1. Sie prüft ob abgeschlossene Umfragen mit gültigen Antworten vorliegen.
 
 2. Die Daten werden aus Lime Survey herunter geladen und mit den Metadaten gemacht. 
 
@@ -384,7 +386,8 @@ run_CronJob()
 # Lucky fellow, there are new expired surveys!
 # Joining with `by = join_by(sid)`
 # Joining with `by = join_by(sid)`
-# Get parameters for: Adalbert-Raps-Schule Staatliche BOS Kulmbach
+# Get parameters for: 
+# Adalbert-Raps-Schule Staatliche BOS Kulmbach
 # Downloaded data from LimeSurvey.
 # All parameters set.   
 # Create data and plots [3.3s]
@@ -403,16 +406,16 @@ background-image: url("images/logo_rm.png")
 background-position: 90% 5%
 background-size: 8%
 
-## Einführung ReportMaster
+## 02 Manueller Run
 
-### Report können natürlich auch manuell erstellt werden
+### Report können manuell erstellt werden via:
 
 ```{r, eval=FALSE}
 # Folgende Parameter müssen gesetzt werden
 library(ReportMaster)
 Sys.setenv(R_CONFIG_ACTIVE = "production")
 
-run_Parallel(
+create_report(
   snr = "2370",
   audience = "leh",
   stype = "gm",
@@ -432,31 +435,35 @@ run_Parallel(
 ---
 ## Von manuellen zu automatisierten Metadaten
 
-#### Meta Daten beinhaltet nur Informationen die es in Lime Survey überhaupt gibt 
+### Metadaten beinhaltet - in erster Instanz - nur Informationen die es in Lime Survey gibt:
 
-- Reifenfolge der Auswertung wird über den **Plot** (diese beinhalten ein oder mehere Surveyitems) definiert
+- 01: Auswertung wird über zugeordneten **Plot** (diese beinhalten ein oder mehere Surveyitems) gesteuert, die bislang fehlt
 
-- Ergänzende Auswertungen (**Extraplots**): Auswertung erfolgt über Plots wobei die Survey Items nicht mehrfach in Daten gelistet sind
+- 02: Zusätzliche Auswertungen (**Extraplots**): Survey Items die Plots mehrfach zugeordnet sind können nicht aus Lime Survey gezogen werden
 
-- Vereinheitlichung der Survey Strukturdaten (**Master to Templates**)
+- 03: Vereinheitlichung der Survey Strukturdaten (**Master to Templates**) zur Implementierung der Automatisierung
 
-- Gewährleistung der Konsistenz von **Variablenbezeichnung** (Gesamtdatensatzes)
+- 04: Gewährleistung der Konsistenz von **Plot- und Variablenbezeichnung** (Gesamtdatensatzes)
 
-#### => In diesen Fällen muss noch nachgeschärft werden
+
+#### In diesen Fällen muss noch nachgeschärft werden
 
 
 
 
 ---
 
-## Plot (Variablenbezeichnung)
+## Nomenklatur der Survey Items
 
-### Für die Automatisierung muss die Plotbezeichung bei allen Survey Items nach festgelegten Muster hinzugefügt werden: Von *B112* zu *B112XB11*
+#### Für die Automatisierung muss die Plotbezeichung nach einem festgelegten Muster hinzugefügt werden
 
-### Einheitliche Variablenbezeichnung bestehend aus: 
- - Code (fortlaufen Seitennummer)
+#### Einheitliche Variablenbezeichnung bestehend aus: 
+
+ - Code (fortlaufende Seitennummer)
  - Variablenbezeichnung
  - Plot
+ 
+#### Beispiel: E01XB112XB11
 
 ```{r}
 # Split im Datensatz:
@@ -470,9 +477,12 @@ stringr::str_split(item, "X")
 
 .pull-left[
 
-### Bislang wurden diese Extraplot ohne Markerierung den manuellen Daten hintzefügt
+#### Bislang wurden die Extraplot manuellen Daten hinzugefügt
 
-### Aufbereitung der Extraplots nach folgenden System
+
+#### Extraplots werden aus den jeweiligen Report extrahiert wenn die folgenden Information vorliegen
+
+#### Welcher Report, welche Variablen und welcher Plot
 
 
 ]
@@ -497,7 +507,6 @@ extraplots_raw
 
 ]
 
-#### => Extraplots werden aus den Rohdaten extrahiert (A131W121); den Reports Tabelle hinzugefügt und der Plotbezeichnung ausgetauscht (von A13 zu W12)
 
 
 ---
@@ -526,7 +535,7 @@ extraplots_raw
 
 ## Master to Templates
 
-#### Prinzipiell kein Matching notwendig, wenn den Master_01 die Templates_01 und Reports01 zugeordnet sind
+### Prinzipiell kein Matching notwendig, wenn den Master_01 die Templates_01 und Reports01 zugeordnet sind
 
 ```{r}
 # # A tibble: 104 × 4
@@ -594,13 +603,56 @@ metadata_raw |>
  - Variable B112 ist Plot B12 zugeordnet
  - Variable B112 ist Plot W13 zugeordnet
  => Extraplots können per Definition nicht automatisiert generiert werden
+ 
 
 ---
-background-image: url("images/ibm.gif")
-background-size: cover
-class: bottom, center
+ 
+## Gegenprüfen der Plotbezeichungen
 
-# .white[`r emoji::emoji("one")` Git/GitHub ... What?] 
+```{r}
+# # A tibble: 8 × 6
+#   report        vars  plot  label_short                                            
+#   <chr>         <chr> <chr> <chr>                                                  
+# 1 gm_p2         W343D W34d  GS_Im Ganztag kann ich Dinge tun, die mir Spaß machen. 
+# 2 gs_p2         W343D W34c  Im Ganztag kann ich Dinge tun, die mir Spaß machen.     
+# 3 rpt_sus_gm_p2 W343D W34d  GS_Im Ganztag kann ich Dinge tun, die mir Spaß machen. 
+# 4 rpt_sus_gs_p2 W343D W34b  Im Ganztag kann ich Dinge tun, die mir Spaß machen.    
+# 5 rpt_sus_fz_p2 W343D W34b  Im Ganztag kann ich Dinge tun, die mir Spaß machen.     
+# 6 rpt_all_fz_p2 W343D W34c  Im Ganztag kann ich Dinge tun, die mir Spaß machen.    
+# 7 gm_p4         W343D W34d  GS_Im Ganztag kann ich Dinge tun, die mir Spaß machen. 
+# 8 gs_p4         W343D W34c  Im Ganztag kann ich Dinge tun, die mir Spaß machen.     
+```
+
+
+---
+
+## Gegenprüfen der Variablenbezeichnung (je Paket)
+
+
+```{r}
+# # A tibble: 8 × 4
+#   report    vars  plot  label_short                                                 
+#   <chr>     <chr> <chr> <chr>                                                       
+# 1 report_15 A111A A11   Mein/e Lehrer/in bekommt mit, was in der Klasse passiert.   
+# 2 report_15 A111B A11   Wenn ich mal nicht aufpasse, schafft mein/e Lehrer/in es sc…
+# 3 report_15 A111C A11   Mein/e Lehrer/in kann sich in unserer Klasse gut durchsetze…
+# 4 report_15 A111D A11   Mein/e Lehrer/in achtet sehr darauf, dass wir im U aufpasse…
+# 5 report_07 A111a A11   Mein Klassenlehrer merkt, was in meiner Klasse alles passie…
+# 6 report_37 A111a A11   Mein Klassenlehrer merkt, was in meiner Klasse alles passie…
+# 7 report_07 A111b A11   Mein Klassenlehrer merkt es, wenn ich mal nicht aufpasse.   
+# 8 report_37 A111b A11   Mein Klassenlehrer merkt es, wenn ich mal nicht aufpasse.
+```
+
+
+---
+
+## 04: Further Goodies of MetaMaster
+
+```{r, eval=FALSE}
+#Get the raw data from LimeSurvey
+LS_GetMasterData(export = TRUE)
+```
+
 
 
 
